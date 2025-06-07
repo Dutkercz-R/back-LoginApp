@@ -17,28 +17,27 @@ import java.util.Map;
 @RestControllerAdvice
 public class ExceptionsHandlers {
 
-  @ExceptionHandler(EntityNotFoundException.class)
-  public ResponseEntity<? > entityNotFound(EntityNotFoundException e){
-    return ResponseEntity.notFound().build();
-  }
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<?> entityNotFound(EntityNotFoundException e) {
+        return ResponseEntity.notFound().build();
+    }
 
-  @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<?> methodArgsNotValid(MethodArgumentNotValidException e){
-    List<FieldError> error = e.getFieldErrors();
-    return ResponseEntity.badRequest()
-      .body(error.stream().map(x -> new ErrorMapping(x.getField(), x.getDefaultMessage())));
-  }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> methodArgsNotValid(MethodArgumentNotValidException e) {
+        List<FieldError> error = e.getFieldErrors();
+        return ResponseEntity.badRequest()
+                .body(error.stream().map(x -> new ErrorMapping(x.getField(), x.getDefaultMessage())));
+    }
 
-  @ExceptionHandler(JWTCreationException.class)
-  public ResponseEntity<?> jwtCreationException(JWTCreationException e){
-    return ResponseEntity.badRequest().body("Erro ao criar o token " + e.getMessage());
-  }
+    @ExceptionHandler(JWTCreationException.class)
+    public ResponseEntity<?> jwtCreationException(JWTCreationException e) {
+        return ResponseEntity.badRequest().body("Erro ao criar o token " + e.getMessage());
+    }
 
-  @ExceptionHandler(JWTVerificationException.class)
-  public ResponseEntity<?> jwtVerificationException(JWTVerificationException e){
-    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido " + e.getMessage());
-  }
-
+    @ExceptionHandler(JWTVerificationException.class)
+    public ResponseEntity<?> jwtVerificationException(JWTVerificationException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido " + e.getMessage());
+    }
 
 
 }

@@ -6,7 +6,7 @@ import org.springframework.validation.FieldError;
 Map errors that contain field and message, like MethodsArgsNotValid */
 
 public record ErrorMapping(String field, String message) {
-  public ErrorMapping(FieldError e){
-    this(e.getField(), e.getDefaultMessage());
-  }
+    public ErrorMapping(FieldError e) {
+        this(e.getField(), e.getDefaultMessage());
+    }
 }

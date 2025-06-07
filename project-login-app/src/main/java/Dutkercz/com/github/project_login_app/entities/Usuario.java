@@ -30,7 +30,8 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
-    public Usuario(){}
+    public Usuario() {
+    }
 
     public Usuario(Long id, String name, String email, String password, UserRoles roles, UserStatus status) {
         this.id = id;
@@ -41,16 +42,16 @@ public class Usuario implements UserDetails {
         this.status = status;
     }
 
-  public Usuario(@Valid UsuarioRequestDTO requestDTO, String pwEncoded) {
-      this.id = null;
-      this.name = requestDTO.name();
-      this.email = requestDTO.email();
-      this.password = pwEncoded;
-      this.roles = UserRoles.ROLE_USUARIO;
-      this.status = UserStatus.ACTIVE;
-  }
+    public Usuario(@Valid UsuarioRequestDTO requestDTO, String pwEncoded) {
+        this.id = null;
+        this.name = requestDTO.name();
+        this.email = requestDTO.email();
+        this.password = pwEncoded;
+        this.roles = UserRoles.ROLE_USUARIO;
+        this.status = UserStatus.ACTIVE;
+    }
 
-  public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -114,7 +115,7 @@ public class Usuario implements UserDetails {
     }
 
     public void update(@Valid UsuarioUpdateDTO updateDTO) {
-       this.email = updateDTO.email();
-       this.password = updateDTO.password();
+        this.email = updateDTO.email();
+        this.password = updateDTO.password();
     }
 }

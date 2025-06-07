@@ -15,31 +15,31 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-  @Bean
-  public SecurityFilterChain filterChain (HttpSecurity security){
-    try{
-      return security.csrf(x -> x.disable())
-        .sessionManagement(x -> x.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authorizeHttpRequests(x -> {
-          x.anyRequest().permitAll();
-        }).build();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  @Bean
-  public PasswordEncoder encode(){
-    return new BCryptPasswordEncoder();
-  }
-
-  @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration){
-    try{
-      return configuration.getAuthenticationManager();
-    } catch (Exception e) {
-      throw new RuntimeException("[Erro]" + e.getMessage());
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity security) {
+        try {
+            return security.csrf(x -> x.disable())
+                    .sessionManagement(x -> x.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                    .authorizeHttpRequests(x -> {
+                        x.anyRequest().permitAll();
+                    }).build();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-  }
+    @Bean
+    public PasswordEncoder encode() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) {
+        try {
+            return configuration.getAuthenticationManager();
+        } catch (Exception e) {
+            throw new RuntimeException("[Erro]" + e.getMessage());
+        }
+
+    }
 }

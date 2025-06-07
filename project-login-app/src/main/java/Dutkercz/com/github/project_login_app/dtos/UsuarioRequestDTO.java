@@ -13,4 +13,5 @@ public record UsuarioRequestDTO(
         @NotBlank(message = "O campo password não pode estar em branco.")
         @Pattern(regexp = "^[a-zA-Z0-9]{6,}$", message = "O campo senha deve conter no mínimo 6 letras e números.")
         String password
-){ }
+) {
+}

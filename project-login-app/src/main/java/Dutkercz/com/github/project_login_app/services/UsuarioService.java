@@ -20,14 +20,14 @@ public class UsuarioService implements UserDetailsService {
     private final PasswordEncoder encoder;
 
     public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder encoder) {
-      this.usuarioRepository = usuarioRepository;
-      this.encoder = encoder;
+        this.usuarioRepository = usuarioRepository;
+        this.encoder = encoder;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findByEmail(username)
-          .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
     }
 
     @Transactional
@@ -38,7 +38,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public Usuario findById(Long id) {
-      return usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(""));
+        return usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(""));
     }
 
     @Transactional
