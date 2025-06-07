@@ -1,8 +1,8 @@
 # Etapa de construção com Maven
 FROM maven:3.8.6-jdk-8-slim AS build
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
+COPY project-login-app/pom.xml .
+COPY project-login-app/src ./src
 RUN mvn clean package -DskipTests
 
 # Etapa de execução com OpenJDK
