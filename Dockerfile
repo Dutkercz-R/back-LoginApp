@@ -6,7 +6,7 @@ COPY project-login-app/src ./src
 RUN mvn clean package -DskipTests
 
 # Etapa de execução com OpenJDK
-FROM openjdk:8-jdk-alpine
+FROM openjdk:17-jdk-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
